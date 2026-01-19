@@ -2,34 +2,34 @@
 <html>
 
 <head>
-	<Title>The Duke of Afthairetos</Title> 
+	<Title>Goods Calculator</Title> 
 	
-	
+	<!-- 
+C:\Users\stevo\Desktop\Toolbox Project\Stack Calculator.html
+below is if I had an either/or .css file to reference
+<link rel="stylesheet" href="cdn.css" onerror="this.onerror=null;this.href='local.css';" />
+	/-->
 	
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<meta name="theme-color" content="#9ACD32">
 	<meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 	
-    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery-3.6.0.js"></script> 
-	<!--CSS STYLE-->
+	
 	<style>
-		
 		:root{
-			--backColor1:#000000;
+			--backColor1:#c99300;
 			--backColor2:#000000;
-			--fontColor1:#e7e7e7;
-			--fontColor2:#96c300;
-			
+			--fontColor1:#000000;
+			--fontColor2:#503712;
+			--tileWhl:40px;
 		}
-		
-
-
-		
+		   
 		.disable-select {
 			 user-select: none; /* supported by Chrome and Opera */
 			 -webkit-user-select: none; /* Safari */
@@ -40,49 +40,106 @@
 		
 		* {
 			color: var(--fontColor1);
-			font-size: 1.12em;
-			text-shadow: 10px 10px 10px #00000099;
-			
-		}
-		html {
-			height: 100%;
+			text-align: center;
+			font-family: Arial;
+			font-size: 1.19em;
+
 		}
 		
 		body {
-			text-align: center;
-			font-family: Arial;
-			background-attachment: fixed;
-			background-color: DarkGrey; /* For browsers that do not support gradients */
-			background-image: linear-gradient(DarkGrey, Black);
+			background-image: url('Cardboard.png');
+			background-repeat: repeat;
+			background-size: auto;
 			background-position: center;
-			background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 1)) , url('White Texture One.jpg')
-			
+			background-attachment: fixed;
+			background-size: cover;
+
+		}
+
+		
+		
+		/* base class for icons */
+		@font-face {
+			font-family: 'ArialMT';
+			src:url('ArialMT.woff') format('woff');
 		}
 		
-		/* TEXT CONTROL STYLES*/
-		
-		myTitles {/*This is used to highlight words in a text.*/
+		.icon {
+			display: inline-block;
+			font-family: 'ArialMT';
+			font-style: normal;
+			font-weight: normal;
+			font-size: inherit;
+			color: inherit;
+			flex-shrink: 0;
+			line-height: 1;
+			max-width: initial;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		myTitles {
 			color: var(--fontColor2);
-			font-size: 1em;
 			font-weight: bold;
 			text-shadow: 2px 2px 10px #00000099;
 		}
-		
+
 		h1 {
 			text-align: center;
+			color: var(--fontColor2);
+			font-size: 2em;
+			font-weight: bold;
+			text-shadow: 2px 2px 10px #00000099;
+			padding: 5px;
+		}
+		
+		h2 {
+			
 			color: var(--fontColor2);
 			font-size: 1em;
 			font-weight: bold;
 			text-shadow: 2px 2px 10px #00000099;
 			padding: 5px;
 		}
-				
+		
+		mark {
+			color: var(--fontColor3);
+			background-color: #ffffff00;
+		}
+
+		input {
+			color: var(--backColor1);
+			background-color: #ffffff00;
+			border: 1px solid #ffffff40;
+			width: 75%;
+			outline: none;
+			user-select: none; /* supported by Chrome and Opera */
+			-webkit-user-select: none; /* Safari */
+			-khtml-user-select: none; /* Konqueror HTML */
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+		}
+		
+		.show {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.hide {
+			opacity: 0;
+			visibility: hidden;
+		}
+		
 		.italicized  {
 			font-style: italic;
 		}
-		
+
 		.bolden {
 			font-weight: bold;
+		}
+
+		.myFont {
+			font-family: 'ArialMTtest', Arial, sans-serif;
 		}
 		
 		.shrinkText {
@@ -95,9 +152,8 @@
 			filter: brightness(-50%);
 			filter: contrast(180%);
 		}
-		
+
 		.darkText {
-			/*color: #ffffff99;*/
 			/*filter: invert(100%);*/
 			filter: brightness(40%);
 		}
@@ -105,14 +161,7 @@
 		.darkerShadow {
 			text-shadow: 100px, 100px;
 		}
-		
-		.jumbo {
-			font-size: 1.3em;
-			font-weight: bold;
-			padding: 0;
-			/*padding for buttons in the input controller*/
-		}
-		
+
 		hr.small {
 			margin-left:40%;
 			margin-right:40%;
@@ -120,8 +169,23 @@
 			margin-bottom:2px;
 		}
 		
-		/* STYLES FOR THE VARIOUS DRAWERS  filter: blur(5px);*/
+		div + hr {
+			margin-top: 3px;
+		}
 		
+		.inputCanvasOld {
+			height: 0%;
+			width: 100%;
+			position: fixed;
+			z-index: 2;
+			top: 0;
+			left: 0;
+			background-color: #00000099;
+			overflow-y: hidden; 
+			transition: 0.5s;
+			text-align:center;
+		}
+
 		.inputCanvas {
 			height: 0%;
 			width: 100%;
@@ -231,6 +295,439 @@
 			text-align: center;
 		}
 		
+		
+		div.middleTabGlassCanvas {
+			height: 0%;
+			width: 90%;
+			position: fixed;
+			margin: auto;
+			top: 0;
+			left: 0; 
+			bottom: 0; 
+			right: 0;
+			max-height: 90%;
+			max-width: 90%;
+			z-index: 2;
+			border-radius: 30px;
+			border-top: 3px solid #95959580;
+			border-left: 3px solid #95959550;
+			border-bottom: 3px solid #05050580;
+			background-color: #55555500;
+			backdrop-filter: blur(8px);
+			transition: 0.25s;
+			overflow-y: auto;
+			text-align: center;
+		}
+		
+		.inputCanvas input {
+			color: var(--fontColor3);
+			background-color: #00000000;
+			width:95%;
+			height:2.5em;
+        	font-size:1em;
+			text-align: center;
+            border: none;
+			text-shadow: 2px 2px 5px black;
+            border-radius: 8px;
+		}
+
+		div.backdrop-dark, div.backdrop-glass, div.backdrop-clear {
+			position: fixed;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			z-index: 100;
+			height: 100%;
+			width: 100%;
+			top: 0px;
+			left: 0px;
+			overflow-y: auto; 
+			transition: 0.25s;
+			text-align: center;
+		}
+
+		div.info-pannel {
+			position: fixed;
+			width: fit-content;
+			height: fit-content;
+			max-width:90%;
+			max-height:90%;
+			padding: 16px;
+			z-index: 101;
+			background-color: #ffffffcc;
+			text-align: center;
+		}
+
+		div.choice-box {
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			flex-direction: column;
+			align-content: center;
+			justify-content: space-evenly;
+		}
+
+		div.backdrop-dark {
+			background-color: #000000cc;
+		}
+
+		div.backdrop-glass {
+			background-color: #55555500;
+			backdrop-filter: blur(8px);
+		}
+
+		div.backdrop-clear {
+			background-color: #00000000;
+		}
+
+		
+		div.glass {
+			border-top: 3px solid #95959580;
+			border-left: 3px solid #95959550;
+			border-bottom: 3px solid #05050580;
+			background-color: #55555500;
+			backdrop-filter: blur(8px);
+		}
+
+		div.serviceCartCanvas {
+			z-index: 20;
+			max-height: 60% !important;
+			background-color: #ffffffcc;
+		}
+
+		div.glassPanel {
+			border-top: 3px solid #95959580;
+			border-left: 3px solid #95959550;
+			border-bottom: 3px solid #05050580;
+			background-color: #55555500;
+			backdrop-filter: blur(8px);
+		}
+
+		div.anchor-top {
+			position: absolute;
+			margin: auto;
+			top: 0; 
+			right: 0;
+			left: 0;
+		}
+
+		div.anchor-right {
+			position: absolute;
+			margin: auto;
+			top: 0; 
+			right: 0;
+			bottom: 0;
+		}
+
+		div.anchor-bottom {
+			position: absolute;
+			margin: auto;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+
+		div.anchor-left {
+			position: absolute;
+			margin: auto;
+			top: 0; 
+			bottom: 0;
+			left: 0;
+		}
+
+		div.anchor-center {
+			position: absolute;
+			margin: auto;
+			top: 0; 
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+
+		div.anchor-high-center {
+			position: absolute;
+			margin: auto;
+			top: 15%; 
+			right: 0;
+			left: 0;
+		}
+
+		div.anchor-low-center {
+			position: absolute;
+			margin: auto;
+			bottom: 15%; 
+			right: 0;
+			left: 0;
+		}
+
+		div.round-top {
+			border-radius: 30px 30px 0px 0px;
+		}
+
+		div.round-right {
+			border-radius: 30px 0px 0px 30px;
+		}
+
+		div.round-bottom {
+			border-radius: 0px 0px 30px 30px;
+		}
+
+		div.round-left {
+			border-radius: 30px 30px 0px 0px;
+		}
+
+		div.round-all {
+			border-radius: 30px;
+		}
+
+		div.tucks-horizontal {
+			min-width: 90px;
+		}
+
+		div.tucks-vertical {
+			min-height: 90px;
+		}
+
+		div.vertical-canvas {
+			min-width: 100%;
+		}
+
+		div.horizontal-canvas {
+			min-height: 100%;
+		}
+
+		div.vertical-margin {
+			max-width: 90% !important;
+			max-height: 90% !important;
+			min-width: 90% !important;
+		}
+
+		div.vertical-narrow {
+			max-width: 90%;
+		}
+
+		div.horizontal-margin {
+			max-width: 90% !important;
+			max-height: 90% !important;
+			min-height: 90% !important;
+		}
+
+		div.horizontal-narrow {
+			max-height: 90%;
+		}
+
+		div.tablet-like {
+			max-width: 90% !important;
+			max-height: 90% !important;
+		}
+
+		div.vertical-tab-like {
+			max-width: 90% !important;
+			min-width: 90% !important;
+		}
+
+		div.horizontal-tab-like {
+			max-height: 90% !important;
+			min-height: 90% !important;
+		}
+
+		div.shrink-along-x {
+			width: 0px;
+		}
+		
+		div.shrink-along-y {
+			height: 0px;
+		}
+
+		div.canvas {
+			z-index: 2;
+			transition: 0.25s;
+			text-align: center;
+			overflow-y: hidden !important;
+		}
+		
+		
+		
+		
+		/*SUBSECTION DRAWER ANIMATION STATES*/
+
+		.delayshort {
+			transition-delay: 0.5s;
+		}
+
+		div.shrink {
+			height: 0%;
+			width: 0%;
+		}
+
+		div.grow {
+			height: 100%;
+			width: 100%;
+		}
+
+		div.openVertically {
+			height: 100%;
+			width: 100%;
+			transition-duration: 0.2s;
+			transition-property: height;
+		}
+		
+		div.untuckVertically {
+			height: 100%;
+			transition-duration: 0.2s;
+			transition-property: height;
+		}
+		
+		div.openHorizontally {
+			height: 100%;
+			width: 100%;
+			transition-duration: 0.2s;
+			transition-property: width;
+		}
+		
+		div.closeVertically {
+			transition: revert;
+			overflow: hidden;
+			height: 0%;
+			width: 100%;
+			transition-duration: 0.2s;
+			transition-property: height;
+		}
+		
+		div.tuckVertically {
+			overflow: hidden;
+			height: 90px;
+			transition-duration: 0.2s;
+			transition-property: height;
+		}
+		
+		div.tuckHorizontally {
+			overflow: hidden;
+			width: 90px;
+			transition-duration: 0.2s;
+			transition-property: width;
+		}
+		
+		div.closeHorizontally {
+			overflow: hidden;
+			height: 100%;
+			width: 0%;
+			transition-duration: 0.2s;
+			transition-property: width;
+		}
+		
+		div.transformed-state-test {
+			transform: rotate(270deg);
+			background-color: blue;
+			color: yellow;
+			font-size: 12px;
+			transition-property: background-color, font-size, transform, color;
+			transition-timing-function: ease-in-out;
+			transition-duration: 3s;
+		}
+		
+		div.innerScroll {
+			overflow-y: auto;
+		}
+		
+		#inner_ServiceCart {
+			max-height: -moz-calc(100% - 180px);
+			/* WebKit */
+			max-height: -webkit-calc(100% - 180px);
+			/* Opera */
+			max-height: -o-calc(100% - 180px);
+			/* Standard */
+			max-height: calc(100% - 180px);
+		}
+		
+		
+		
+		
+		
+		.flexChildOne {
+			
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-content: center;
+			align-items: center;
+			width: 50px;
+			height: 50px;
+			
+		}	
+
+		.flexChildTwo {
+			
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-around;
+			align-content: center;
+			align-items: center;
+			width: 100px;
+			height: 100px;
+			
+		}	
+		
+		.verticalLine {
+			border-left: 1px solid var(--fontColor2);
+			height: 1em;
+		}
+		
+		
+		.rowFlex {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-content: center;
+			align-items: center;
+		}
+
+		.columnFlex {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-content: center;
+			align-items: center;
+		}
+
+		
+		.buttonPair {
+			display: flex;
+			align-items: stretch;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			align-content: center;
+			flex-direction: row;
+		}
+
+		.blackLine {
+			border-top: 2px solid black;
+			width: 100%;
+		}
+
+		button {
+        	text-align: center;
+			background-color: #00000000;
+			border-radius: 48%;
+			border: none;
+		}
+		
+		
+		button.onCanvas {
+			color: var(--fontColor2);
+			text-shadow: 2px 2px 5px #000000;
+		}
+		
+		button:active {
+			transform: translateY(3%);
+			box-shadow: inset 8px 6px 10px rgba(0,0,0,0.17), inset -8px -8px 4px #ffffff17;
+			text-shadow: 1px 1px 5px #999999;
+		}
+
 		.inputCanvas input {
 			color: var(--fontColor2);
 			background-color: #00000000;
@@ -242,106 +739,6 @@
             border-radius: 8px;
 		}
 		
-		/* SMALLER DIV ELEMEMTS FOR POSITIONING */
-		
-		
-		br.inlandscape {
-			display:block;
-		}
-		
-		div.triplet {
-			overflow: visible;
-			height: 30%;
-			width: 100%;
-			text-align: center;
-		}
-		
-		div.stabilizer {
-			display: inline-block;
-			height: 100%;
-			width: 30%;
-			margin: 0;
-			padding: 0; 
-			/*padding for buttons in the input controller*/
-			text-align: center;
-		}
-		
-		div.squareDiv {
-			aspect-ratio : 1 / 1;
-			width: 90%;
-			max-width: 300px;
-			margin: auto;
-			text-align: center;
-			display: inline-block;
-		}
-		
-		.card {
-			max-width: 500px;
-			margin: auto;
-			background-color: #55555500;
-			margin:10px;
-		}
-		
-		.cardHolder {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			background-color: #55555500;
-			justify-content: center;
-		}
-		
-		/* MY BEAUTIFUL BUTTONS */
-		
-		button {
-        	text-align: center;
-			border: none;
-			background-color: #00000000;
-			/*text-shadow: 2px 2px 5px #999999;*/
-			border-radius: 48%;
-			padding-left: 20px;
-			padding-right: 20px;
-		}
-		
-		button.token {
-			border-radius: 10%;
-			padding-left: 5px;
-			padding-right: 10px;
-			
-		}
-		
-		button.listitem {
-			border-radius: 5%;
-			padding-left: 5px;
-			padding: 10px;
-		}
-		
-		button.spaced {
-			border-bottom: 20px;
-		}
-		
-		button.closeBTN {
-			margin-bottom: 30px;
-		}
-		
-		button.onCanvas {
-			color: var(--fontColor2);
-			text-shadow: 2px 2px 5px #000000;
-		}
-		
-		button:disabled,
-		button[disabled]{
-			color:#99999920;
-			text-shadow: none;
-		}
-		
-		button:active {
-			transform: translateY(7%);
-			box-shadow: inset 8px 6px 10px rgba(0,0,0,0.17), inset -8px -8px 4px #ffffff17;
-			text-shadow: 1px 1px 5px #999999;
-		}
-		
-		/* SPACIFIC STYLES */
-		
 		#description {
 			padding: 0px 20px ;
 			font-size: 1em;
@@ -349,49 +746,80 @@
 			text-shadow: none;
 		}
 		
-		#controllerCanvas {
-			max-width:1000px;
-			max-height:400px;
-			overflow:hidden;
-		}
 		
-		#topleftcontroller {
-			float: left;
-		}
 		
-		#bottrightcontroller {
-			float: right;
+		#finalCountSticker {
+			background-color: #ffffff95;
+			font-size: 0.7em;
+			padding-left: 30px;
+			padding-right: 30px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: space-around;
+			align-content: center;
+			align-items: center;
 		}
-		
-		#midcontroller {
-			line-height: 100px;
-			display: inline-block;
-			vertical-align: middle;
+
+		#countReadout {
 			text-align: center;
+			font-size: 2em;
+			font-weight: bold;
+		}
+
+		#jobElement {
+			padding-top:5px;
+		}
+
+		#subReadout {
+			text-align: center;
+			font-size: 0.7em;
+			display: none;
 		}
 		
-		/* FLUXUATION */
-		
-		@media screen and (orientation:portrait) {
-			h1 {
-				
-			}
+		#header {
+			position:relative;
+			text-align: center;
+			font-size: 0.7em;
+			padding: 12px 1px;
+		}
+
+		.leftHeaders {
+			font-size: 0.4em;
+			transform: rotate(-90deg);
+			padding-bottom: 30px;
+			/*transform-origin: left;*/
+			color: var(--fontColor1);
+			text-shadow: 2px 2px 10px #00000099;
+		}	
+
+		#palletDisplay {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-content: center;
+			align-items: flex-start;
+			margin-left: 15%;
+			margin-right: 15%;
 			
-		
-			br.inlandscape {
-				display:none;
-			}
-			
+		}
+
+		p {
+			margin: 12px 1px;
 		}
 		
 		
 	</style>
 	<script>
-	// UPPER SCRIPT AND QUICK SETTINGS
-	
-		/*
-		 */
-		//Stevo's tester. use like this: sr.x || sr.ct++ || alert(sr.ct) || sr.ct = "testing"; //ect. sr will be console only.
+		/**
+		* //#region Upper Code
+	 	* @section Declarations
+		*/
+		//Stevo's tester. use like this: sr.x || sr.ct++ || alert(sr.ct) || sr.x = "testing"; //ect. The logger will display the stuff.
 		var  sr =  {
 			ct : 0,
 			history : "Testing",
@@ -414,218 +842,1813 @@
 				console.log(testX);
 				sr.history = sr.ct;
 			},
-			stop (content = "") {
-				const alerted = {Syntax: "sr.stop;", Count: "unchanged at " + sr.ct, Message:sr.history+" Provided content: "+content};
+			get stop () {
+				const alerted = {Syntax: "sr.stop;", Count: "unchanged at " + sr.ct, Message:sr.history};
 				console.table({alerted});
 				//This could have the ability to give a different result if the sr.stop is called while all alone.
 				//if the sr.ct is equal to sr.history then the alert should be "testing" or sr.ct with a description as to why. etc.
-				alert(content+" and sr.history: "+sr.history);
+				alert(sr.history);
 			}
-			
 		}
 		
-		var target = "";
-		var userFocus = "body";
+		var countInput = 3;// The final sum of the calculator
+		var target = "boxes"; //This will be a copy of the id for the variable and button to modify by proxy.
+		var spanish = false;
+
+		let canvasHistory = [];
+
+		var currentJob = "Job1";
+		var jobData = {
+			Job1: {
+				title: "Job1",
+				goal: 0,
+				offsetCount: 0,
+				unitsPerBox: 0,
+				boxesPerLayer: 0,
+				layerPerPallet: 0,
+				boxes: 0,
+				layers: 0,
+				pallets: 0
+			}
+		};
+
 		
-		var player = {
-			name:"Player",
-			race:"Human",
-			bloodWound: 0,
-			bloodTolerance: 10,
-			crushWound: 0,
-			crushTolerance: 10,
-			innerWound: 0,
-			innerTolerance: 10,
-			mindWound: 0,
-			mindTolerance: 10,
-			curseWound: 0,
-			curseTolerance: 5,
-			silver: 0,
-			level: 1.0,
-			goodRep: 10,
-			badRep: 10,
-			state: [],
-			items: [],
-			titles: [],
-			memory: [],
-			actToken:"Idle"
-		}
+		// Namespace
+		var elementMaker = elementMaker || {};
+		var hmi = hmi || {};
+
+		//This will load the localStorage info if it exists, or create it if it does not.
 		localStorageInitiation();
 		
 		
-		//This is for the starage of variables
+
 		function localStorageInitiation () {
-			if (localStorage.exists){
-				let playerString = localStorage.getItem("player");
-				//goal = Number(localStorage.goal); // Example
-				player = JSON.parse(playerString);
+			if (localStorage.exists) {
+				currentJob = String(localStorage.currentJob);
+				const rawJobData = localStorage.getItem('jobData');
+				if (rawJobData) {
+					jobData = JSON.parse(rawJobData);
+				};
+				console.log(jobData);
+
 			} else {
-				//localStorage.setItem("goal", 0); //Example
+				localStorage.setItem("currentJob", currentJob);
 				localStorage.setItem("exists", true);
-				localStorage.setItem("player", JSON.stringify(player));
+				localStorage.setItem("countInput", 3);
+				localStorage.setItem('jobData', JSON.stringify(jobData));
+				localStorage.setItem("spanish", false);
 			}
 		}
-		
+
+		//This is the main event listener. I bound it to the root so that I would have less garbage collection and I would not have to chase and close listeners as I go.
+        //This app would have sooo many listeners because each entry has multiple buttons and they are being created and deleted frequently.
+        const rootEl = document.querySelector(":root");
+        // Detect touch capability and use appropriate listener
+        const isTouchDevice = () => navigator.maxTouchPoints > 0;
+        const eventType = isTouchDevice() ? 'touchend' : 'mouseup';
+        
+        // Listen for clicks on the entire window
+        rootEl.addEventListener(eventType, function (event) {
+			if (event.target.closest('.rootListener')) buttonHandler(event.target.id, event.target.name);
+		});
+
+		/*
 		//This is to set the best press for the input. Then set the functions in jquerry
 		function isTouch() {
-		{
 			try{ document.createEvent("TouchEvent"); return true; }
 			catch(e){ return false; }
 		}
-			if(isTouch()){
-				$(document).ready(
-					function(){
-						$("button").on('touchstart',function(){
-							//The bellow function was renamed for another purpose. I was wondering iff I even need this jquery but I will know more after I try using a touchscreen.
-							//If that happens then I will need to reinstate the buttonHandler().
-							buttonHandler(this.id, this.name);
-						});
-					}
-				);
-			}else{
-				$(document).ready(
-					function(){
-						$("button").mousedown(function(){
-							buttonHandler(this.id, this.name);
-						});
-					}
-				);
-			}
+		
+		if(isTouch()){
+			$(document).ready(
+				function(){
+					$("button").on('touchstart',function(){
+						buttonHandler(this.id, this.name);
+					});
+				}
+			);
+		}else{
+			$(document).ready(
+				function(){
+					$("button").mousedown(function(){
+						buttonHandler(this.id, this.name);
+					});
+				}
+			);
 		}
+		*/
+		//Just for testing stuff. I use this instead of cluttering up the buttonHandler with test code.
+		async function testStuff(testArgument){
+			const options = {text: "testbtn2", style:"number italicized", id:"testbtn2", classList:"rootListener"};
+			const testButtonElement = makeButton(options);
+			const testTiming = await hmi.askUser("Pick an option",["Test1","Test2","Test3","Fourth?"],{result:"Result1"},"Result2","Result3");
+			//const testTiming = await hmi.userInput("How many pallets?");
+			alert("You selected: " + JSON.stringify(testTiming));
+
+		}
+		//#endregion
 	</script>
 
 </head>
 
-<body onload="initiation()">
-	<div class="mainContainer">
-	
-		<div class="row">
-			<h1 name="sheetName" id="sheetName">Sermon Title</h1>
-			<p>Summary Goes Here</p>
-		</div>
-		
-		<hr>
-		
-		<div>
-			<h1 name="actToken" id="actToken">Information for EAC goes here</h1>
-		</div>
-		
-		
-		<hr>
-		
-		<h1 name="header" id="header">Test output here</h1>
-		
-	</div>
 
+<body>
 	<div id="inputCanvas1" class ="inputCanvas">
 		<br>
 		<form action="#" onsubmit="submitInputProxy(); closeProxy(); return false;">
-				<input type="input" name="inputProxy" id="inputProxy" value="1">
-			<p name="description" id="description"></p>
-			<button type="submit" name="proxySubmit" id="proxySubmit" class="disable-select onCanvas">Submit ➤</button>
+				<input type="number" name="inputProxy" id="inputProxy" value="1">
 		</form>
-		<hr>
-		<button type="button" name="closeproxy" id="closeproxy" class="disable-select onCanvas" onclick="drawerOpenClose()">Close</button>
+			<p name="description" id="description"></p>
+			<button type="button" name="proxySubmit" id="proxySubmit" class="disable-select onCanvas rootListener">Submit ➤</button>
 	</div>
 
-	<div id="bottomTabCanvas" class ="bottomTabCanvas">
-		<div id="bottomList" class="listOfItems">
-			<button type="button" name="engage" id="engage" class="disable-select listitem darkText">Engage with an NPC</button>
-			<hr class="small">
-			<button type="button" name="talk" id="talk" class="disable-select listitem darkText">Converse with NPC</button>
-			<hr class="small">
-			<button type="button" name="stuffto" id="stuffto" class="disable-select listitem darkText">Use/give item on/to NPC</button>
-			<hr class="small">
-			<button type="button" name="stufffrom" id="stufffrom" class="disable-select listitem darkText">Request an item/favor from the NPC</button>
-			<hr class="small">
-			<button type="button" name="poke" id="poke" class="disable-select listitem darkText">Assult/provoke the NPC</button>
-			<hr class="small">
-			<button type="button" name="flee" id="flee" class="disable-select listitem darkText">Break from all engagements</button>
-			<hr class="small">
-			<button type="button" name="other" id="other" class="disable-select listitem darkText">Attempt something not listed</button>
+	<div id="inputJob" class ="inputCanvas">
+		<br>
+	</div>
+	
+	<div id= "mainContainer" class="mainContainer">
+
+		<div class="rowFlex">
+			<div class="flexChildTwo">
+			</div>
+			<div id = finalCountSticker>
+				<button type="button" name="jobElement" id="jobElement" class="disable-select">Job Select</button>
+				<p name="countReadout" id="countReadout">3</p>
+				<p name="subReadout" id="subReadout">/0 (0%)</p>
+			</div>
+			<div class="flexChildTwo">
+			<!-- <button type="button"  name="menu"id="menu" class="disable-select arrow">...</button> -->
+			</div>
 		</div>
-		<hr>
+		
+		<div class ="blackLine"></div>
+
 		<div>
-			<button type="button" name="closeBottom" id="closeBottom" class="disable-select closeBTN darkText" onclick="drawerOpenClose()">Close</button>
+			<p id="partialReadOut" name="partialReadOut" >Test boxes and layer readout</p>
+		</div>
+		
+		<div class="rowFlex">
+			<div class="rowFlex">
+				<div class="buttonPair">
+					<button type="button" name="downLayer" id="downLayer" class="disable-select rootListener" >-</button>
+					<button type="button"  name="layerIcon"id="layerIcon" class="disable-select icon rootListener" data-sprite="2"></button>
+					<button type="button"  name="upLayer"id="upLayer" class="disable-select rootListener">+</button>
+				</div>
+			</div>
+			<div class="rowFlex">
+				<div class="buttonPair">
+					<button type="button"  name="upBox"id="upBox" class="disable-select rootListener">+</button>
+					<button type="button"  name="boxIcon"id="boxIcon" class="disable-select icon rootListener" data-sprite="0"></button>
+					<button type="button" name="downBox" id="downBox" class="disable-select rootListener" >-</button>
+				</div>
+			</div>
+			
+		</div>
+		<br>
+
+		<div class ="blackLine"></div>
+		
+		<div>
+			<p id="palletReadOut" name="palletReadOut" class="rootListener">There are no pallets</p>
+		</div>
+
+		<div class="rowFlex">
+			<div class="flexChildTwo">
+				<button type="button"  name="upPallet"id="upPallet" class="disable-select rootListener">+</button>
+			</div>
+
+			<div class="flexChildTwo">
+				<button type="button" name="downPallet" id="downPallet" class="disable-select rootListener" >-</button>
+			</div>
+
+		</div>
+		<br>
+		<div id="palletDisplay"> </div>
+		<div class="rowFlex">
+			<!--<button type="button" name="testBtn" id="testBtn" class="disable-select number italicized rootListener" ">Test</button> /-->
 		</div>
 	</div>
-
 </body>
+
+
 <script>
-	function initiation(){
-		
-		
-	}
+	/**
+	* @section Initialization
+	*/
+	//This will load the correct information from the localStorage into the html elements.
+	loadInitialJobData();
+	updateText("countReadout", calcTotal());
+	newStats();
+	updateElements();
+	displaySpritesOnDataElements(64);
+	updatePalletDisplay();
 	
-	//This should open close the drawers listed in the canvas array. Callback with no argument will close, spacific will open.
-	function drawerOpenClose(specific = "close"){
-		var element = document.getElementById("tempCenterCanvas");
-		var axis = "horizontal";
-		if(specific != "close"){
-			element = document.getElementById(specific);
-		}
-		//list of canvases to ensure closeure.
-		const canvas = [
-			"inputCanvas1",
-			"detailsCanvas1",
-			"statusListCanvas1",
-			"itemsListCanvas1",
-			"titlesListCanvas1",
-			"endeavorCanvas",
-			"discoverCanvas",
-			"partyCanvas",
-			"selfCanvas",
-			"enemyCanvas",
-			"npcCanvas",
-			"playerCanvas",
-			"controllerCanvas",
-			
-			"tempCanvasV",
-			"tempCanvasH",
-			
-			"tempCenterCanvas"
-		];
-		
-		if(element.classList.contains("vertical") && specific != "close"){
-			axis = "vertical";
-		}
-		
-		
-		
-		for(let i = 0; i < canvas.length; i++){
-			if(canvas[i] == specific && userFocus != canvas[i]){
-				if(specific == "statusListCanvas1" || specific == "itemsListCanvas1" || specific == "titlesListCanvas1" || specific == "tempCanvasH"){
-					document.getElementById(specific).style.width = "100%";
-				}else{
-					document.getElementById(specific).style.height = "100%";
-				}
-				userFocus = specific;
-			}else{
-				if(canvas[i] == userFocus)userFocus = "body";
-				if(canvas[i] == "statusListCanvas1" || canvas[i] == "itemsListCanvas1" || canvas[i] == "titlesListCanvas1" || canvas[i] == "tempCanvasH"){
-					if(document.getElementById(canvas[i])!== null) document.getElementById(canvas[i]).style.width = "0%";
-					
-				}else{
-					if(document.getElementById(canvas[i])!== null) document.getElementById(canvas[i]).style.height = "0%";
-				}
+	function loadInitialJobData(){
+		var parsed = (typeof parseTitleAndItemsFromUrl === 'function') ? parseTitleAndItemsFromUrl() : { title: null, items: [] };
+		const existingJobKeys = Object.keys(jobData);
+		if (parsed.title) {
+			// Select existing job with matching title, or create new one
+			const existingKey = existingJobKeys.find(k => jobData[k].title === parsed.title);
+			if (existingKey) {
+				currentJob = existingKey;
+			} else {
+				//addJob creates a job and will return the key and job object.
+				const { key, job } = addJob({ title: parsed.title, unitsPerBox: Number(parsed.items[0]) || 1, boxesPerLayer: Number(parsed.items[1]) || 1, layerPerPallet: Number(parsed.items[2]) || 1 });
+				currentJob = key;
+				updateJob(currentJob, job);
+				saveToLocalStorage();
 			}
-			//document.getElementById("inputProxy").blur();
 		}
+	};
+
+	function displaySpritesOnDataElements(size = 64) {
+		const elementsWithSprite = document.querySelectorAll('[data-sprite]');
+		elementsWithSprite.forEach(element => {
+			const spriteIndex = parseInt(element.getAttribute('data-sprite'), 10);
+			if (!isNaN(spriteIndex)) {
+				const sprite = displaySprite(spriteIndex, size);
+				sprite.id = element.id;
+				sprite.classList.add('rootListener');
+				element.appendChild(sprite);
+			}
+		});
+	}
+
+
+	//This is to save the variables to the localStorage for use next time.
+	function saveToLocalStorage () {
+		localStorage.setItem("exists", true);
+		localStorage.setItem("countInput", countInput);
+		localStorage.setItem("spanish", spanish);
+        localStorage.setItem('jobData', JSON.stringify(jobData));
+	};
+
+
+	/**
+		* @section Data Management
+	*/
+	// --- Job utilities: generator and helper methods ---
+	function getNextJobKey() {
+		const nums = Object.keys(jobData)
+			.map(k => k.match(/^Job(\d+)$/))
+			.filter(Boolean)
+			.map(m => Number(m[1]));
+		const next = nums.length ? Math.max(...nums) + 1 : 1;
+		return `Job${next}`;
+	};
+
+	function saveJobData() {
+		try {
+			localStorage.setItem('jobData', JSON.stringify(jobData));
+		} catch (e) {
+			console.warn('Could not save jobData to localStorage:', e);
+		}
+	};
+
+	// Add a job into jobData. Accepts partial overrides, returns {key, job}
+	function addJob(overrides = {}) {
+		let key = overrides.key || getNextJobKey();
+		// If the key already exists, append a numeric suffix (-1, -2, ...) until unique
+		if (jobData[key]) {
+			console.warn(`Job key ${key} already exists — appending suffix to make unique.`);
+			const base = String(key);
+			let i = 1;
+			let candidate = `${base}-${i}`;
+			while (jobData[candidate]) {
+				i++;
+				candidate = `${base}-${i}`;
+			}
+			key = candidate;
+		}
+		const defaultJob = {
+			title: key,
+			goal: 0,
+			offsetCount: 0,
+			unitsPerBox: 1,
+			boxesPerLayer: 1,
+			layerPerPallet: 1,
+			boxes: 0,
+			layers: 0,
+			pallets: 0
+		};
+		const job = Object.assign({}, defaultJob, overrides);
+		delete job.key;
+		jobData[key] = job;
+		saveJobData();
+		return { key, job };
+	};
+
+	// Generator that yields a newly created job each iteration (useful for quick seeding)
+	function* jobGenerator() {
+		while (true) {
+			yield addJob();
+		}
+	};
+
+	// Update an existing job by key with partial updates; returns updated job or null
+	function updateJob(key, updates = {}) {
+		if (!jobData[key]) {
+			console.warn(`Cannot update: no job with key ${key}`);
+			return null;
+		}
+		jobData[key] = Object.assign({}, jobData[key], updates);
+		saveJobData();
+		return jobData[key];
+	};
+
+	// Remove a job by key; returns true if removed, false otherwise
+	function removeJob(key) {
+		if (!jobData[key]) {
+			console.warn(`Cannot remove: no job with key ${key}`);
+			return false;
+		}
+		delete jobData[key];
+		saveJobData();
+		return true;
+	};
+
+	// Seed multiple jobs (useful for testing). Returns array of created keys
+	function seedJobs(count = 5, overrides = {}) {
+		const created = [];
+		for (let i = 0; i < count; i++) {
+			const { key } = addJob(overrides);
+			created.push(key);
+		}
+		//console.log(`seedJobs: created ${created.length} jobs`, created);
+		//console.log('jobData after seeding:', jobData);
+		return created;
+	};
+
+	//seedJobs(3); // Seed 3 jobs for testing/demo purposes
+	// --- End job utilities ---
+
+	
+	//This will calculate the overall total count
+	function calcTotal(tempObject = structuredClone(jobData[currentJob])) {
+		const amountFromBox = tempObject.boxes * tempObject.unitsPerBox;
+		const amountFromLayers = (tempObject.layers * tempObject.boxesPerLayer) * tempObject.unitsPerBox;
+		const amountFromPallets = ((tempObject.pallets * tempObject.layerPerPallet) * tempObject.boxesPerLayer) * tempObject.unitsPerBox;
+		countInput = Number(amountFromBox + amountFromLayers + amountFromPallets + tempObject.offsetCount);
+		return countInput;
+		
+	}
+
+	//This will calulate partial pallet only. May not be needed.
+	function calcPartial() {
+		const tempObject = structuredClone(jobData[currentJob]);
+		const amountFromBox = tempObject.boxes * tempObject.unitsPerBox;
+		const amountFromLayers = (tempObject.layers * tempObject.boxesPerLayer) * tempObject.unitsPerBox;
+		return Number(amountFromBox + amountFromLayers);
 	}
 	
-	//This will now be to process user input.This should be different from the other button inputs.
+	//This will calulate the amount of pieces or boxes per pallet.
+	function calcPallet(unit = "pieces") {
+		const tempObject = structuredClone(jobData[currentJob]);
+		const amountOf =  unit == "pieces" ? Number((tempObject.layerPerPallet * tempObject.boxesPerLayer)  * tempObject.unitsPerBox) : Number(tempObject.layerPerPallet * tempObject.boxesPerLayer);
+		return amountOf;
+	}
+
+	// Parses `?title=Foo&items=a,b,c` and returns `{ title: 'Foo', items: ['a','b','c'] }`.
+	// The `titleKey` and `itemsKey` parameters can be overridden if needed.
+	function parseTitleAndItemsFromUrl(titleKey = 'title', itemsKey = 'items') {
+		const params = new URLSearchParams(window.location.search);
+		const title = params.get(titleKey) || null;
+		const itemsRaw = params.get(itemsKey) || '';
+		const items = itemsRaw.length ? itemsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+		return { title, items };
+	}
+	// Expose globally
+	window.parseTitleAndItemsFromUrl = parseTitleAndItemsFromUrl;
+	window.parseTitleItemsFromUrl = parseTitleAndItemsFromUrl;
+
+
+
+
+ 	//This is the main controller object. I made it on an older script but after importing some molecules I realized I should make one here too.
+	var ctrl = ctrl || {};
+
+	ctrl = {
+
+		latestID: 0,
+
+		target: "self",
+		
+		element: function(passedTarget, parentTarget = false){
+		const focusElement = 
+			document.getElementById(passedTarget) ||
+			passedTarget
+		;
+		const target = parentTarget ? focusElement.parentElement || focusElement : focusElement;
+		return target instanceof HTMLElement ? target : false
+	},
+
+		arrayAsHistory: function(entry, arrayArg = [], maxLength){
+			const index = arrayArg.indexOf(entry);
+			if(index > -1){
+				arrayArg.splice(index, 1);
+			};
+			arrayArg.unshift(entry);
+			if(maxLength){
+				if(arrayArg.length === maxLength){
+					arrayArg.pop();
+				};
+			};
+			return arrayArg;
+		},
+
+		newSerial: function(){
+			ctrl.latestID++;
+			return ctrl.latestID;
+		}
+
+	};
+
+
+
+
+	/**
+		* @section Operations
+	*/
+	//Used to apply the inputProxy input field value to the appropriate variable based on the variable 'target.' 
 	function submitInputProxy() {
-	alert("submit was success Probe 81");
 		var newInput = Number(document.getElementById("inputProxy").value);
+		const tempObject = structuredClone(jobData[currentJob]);
+		if (newInput < 0 || isNaN(newInput)) newInput = 0;
 		switch(target) {
 			case "boxes":
-				//boxes = newInput;
-				//updateText("boxes", boxes);
+				tempObject.boxes = newInput;
+				break;
+			case "layers":
+				tempObject.layers = newInput;
+				break;
+			case "pallets":
+				tempObject.pallets = newInput;
+				break;
+			case "unitsPerBox":tempObject.unitsPerBox = newInput;
+				break;
+			case "boxesPerLayer":
+				tempObject.boxesPerLayer = newInput;
+				break;
+			case "layerPerPallet":
+				tempObject.layerPerPallet = newInput;
+				break;
+			case "offsetCount":
+				tempObject.offsetCount = newInput;
+				break;
+			case "goal":
+				const goalReadOut = tempObject.goal == 0 ? "Goal" : tempObject.goal + " (" + Math.floor(tempObject.goal / tempObject.unitsPerBox) + ")";
+				updateText("goal", goalReadOut);
+				tempObject.goal = newInput;
 				break;
 			default:
-				alert(newInput);
+					
 		}
-		//saveToLocalStorage();
+		updateJob(currentJob, tempObject);
+		saveToLocalStorage();
+		updateText("countReadout", calcTotal());
+		updateElements();
+		newStats();
 	}
+
+	//I had a problem with my phone emulating a click and I want to handle it as a press, so... You should look at the jquery to call this. 
+	//When this is called from jquerry I cannot get the showProxyCanvas to auto select the text field. So some buttons use onclick.
+	//This handles some of different buttons.
+	function buttonHandler(buttonID = "noID", buttonName = "noName"){
+		if(typeof buttonID != "string") return;
+		const  inputCanvasHeight = document.getElementById("inputCanvas1").clientHeight;
+		const tempJob = structuredClone(jobData[currentJob]);
+		var goalReadOut = 0;
+		if(inputCanvasHeight == 0){
+			switch(buttonID) {
+				case "upBox":
+					tempJob.boxes++;
+					break;
+				case "upLayer":
+					tempJob.layers++;
+					break;
+				case "upPallet":
+					tempJob.pallets++;
+					break;
+				case "downBox":
+					tempJob.boxes--;
+					if (tempJob.boxes < 0) tempJob.boxes = 0;
+					break;
+				case "downLayer":
+					tempJob.layers--;
+					if (tempJob.layers < 0) tempJob.layers = 0;
+					break;
+				case "downPallet":
+					tempJob.pallets--;
+					if (tempJob.pallets < 0) tempJob.pallets = 0;
+					break;
+				case "boxIcon":
+					showProxyCanvas('boxes');
+					break;
+				case "layerIcon":
+					showProxyCanvas('layers');
+					break;
+				case "palletReadOut":
+					showProxyCanvas('pallets');
+					break;
+				case "jobElement":
+					showJobSelection();
+					break;
+				case "makeNewJob":
+					addJob();
+					newJobList();
+					break;
+				case "deleteCurrentJob":
+					if (currentJob == "Job1") {
+						alert("Cannot delete the first job in the list. This is the main job.");
+						break;
+					};
+					removeJob(currentJob);
+					newJobList();
+					currentJob = Object.keys(jobData)[0];
+					updateText("jobElement", currentJob);
+					updateElements();
+					updateText("countReadout", calcTotal());
+					newStats();
+					closeJobSelection();
+					break;
+				case "closeJobSelection":
+					closeJobSelection();
+					break;
+				case "testBtn":
+					testStuff();
+					break;
+			}
+			
+			updateJob(currentJob, tempJob);
+			saveToLocalStorage();
+			updateText("countReadout", calcTotal());
+			updateElements();
+			newStats();
+		}else{
+			if(buttonID == "proxySubmit")submitInputProxy();
+			closeProxy();
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 	* @section Element Maker
+		* @description This is the main object for making elements in the HTML DOM.
+		* @dataset In HTML, data attributes are written with dashes (data-user-id). In JavaScript, dataset converts these to camelCase (dataset.userId). element.setAttribute('data-' + attributeName, value);
+	*/
+	elementMaker = {
+		presets:{
+			canvas: {
+				id: "canvas$"+"ctrl.newSerial",
+				class:"glassPanel canvas",
+				anchor:"center",
+				axis:"x",
+				fluxtype: "temporary",
+				rounding: "tabletRounded"
+			},
+
+			serviceCart: {
+				id: "serviceCartCanvas",
+				class:"serviceCartCanvas",
+				anchor:"bottom",
+				axis:"x",
+				fluxtype: "tucking",
+				tucking: "60%",
+				narrow: true,
+				rounded: true
+			},
+
+			mainlistMenu: {
+				id: "mainMenu",
+				class:"glassPanel canvas",
+				anchor:"center",
+				axis:"x",
+				fluxtype: "appearance",
+				narrow: true,
+				rounded: true
+			},
+
+			mapList: {
+				id: "MapListCanvas",
+				class:"glassPanel canvas",
+				anchor:"center",
+				axis:"x",
+				fluxtype: "appearance",
+				rounding: "tabletRounded",
+				profile: "narrow",
+				narrow: true,
+				rounded: true
+			},
+
+			scnList: {
+				id: "listNoId",
+				class:"glassPanel canvas",
+				anchor:"center",
+				axis:"x",
+				fluxtype: "appearance",
+				rounding: "tabletRounded",
+				profile: "narrow",
+				narrow: true,
+				rounded: true
+			},
+
+			backdrop: {
+				id: "backdrop-dark",
+				class:"backdrop-dark",
+				anchor:"center",
+				axis:"y",
+				fluxtype: "appearance"
+			},
+
+			popupGlass: {
+				id: "infoPannel",
+				class:"info-pannel",
+				anchor:"high",
+				axis:"z",
+				fluxtype: "temporary",
+				rounding: "rounded",
+				profile: "narrow",
+				narrow: true,
+				rounded: true
+			}
+
+
+		},
+
+		blankCanvas: function(options){
+			if(typeof options !== "object") options = {};
+			const canvas = document.createElement("div");
+			const classesToAdd = [];
+			//axis Lock // this should be done as a class and added just before shrink is added at hmi.navigate.blur as well as removed at hmi.navigate.focus
+			//material or appearance
+			//Gradient?
+			//texture?
+
+			
+
+			options.anchor = options.anchor || "center";
+
+			classesToAdd.push(
+				options.anchor == "top" || options.anchor == "anchor-top" ? "anchor-top" :
+				options.anchor == "right" || options.anchor == "anchor-right" ? "anchor-right" :
+				options.anchor == "bottom" || options.anchor == "anchor-bottom" ? "anchor-bottom" :
+				options.anchor == "left" || options.anchor == "anchor-left" ? "anchor-left" :
+				options.anchor == "high" || options.anchor == "anchor-high" ? "anchor-high-center" :
+				options.anchor == "low" || options.anchor == "anchor-low" ? "anchor-low-center" :
+				"anchor-center"
+			);
+			
+			options.axis = options.axis || "z";
+
+			options.fluxtype = options.fluxtype || "appearance";// appearance / curtain / tucking / minimizing / temporary
+
+			//Tucking is very dominant. Fluxtype and tuck properties must match.
+			if(options.fluxtype === "tucking" && !options.tucking)options.tucking = true;
+			if(typeof options.tucking === "string" || options.tucking === true){
+				options.fluxtype = "tucking";
+				if(options.anchor == "top" || options.anchor == "bottom"){
+					canvas.style.maxHeight = options.tucking === true ? "fit-content" : options.tucking;
+					classesToAdd.push("tucks-vertical");
+				} else if(options.anchor == "right" || options.anchor == "left"){
+					canvas.style.maxWidth = options.tucking === true ? "fit-content" : options.tucking;
+					classesToAdd.push("tucks-horizontal");
+				}else{
+					console.warn(`Tucking for ${options.id} will not work because anchor is ${options.anchor}.`);
+				};
+			};
+
+			options.full = 
+				typeof options.full !== "undefined" ? options.full : 
+				options.narrow ? false :
+				true
+			;
+			if(!options.full)classesToAdd.push(
+				(options.anchor === "top" || options.anchor === "bottom") ? "vertical-narrow" :
+				(options.anchor === "right" || options.anchor === "left") ? "horizontal-narrow" :
+				["horizontal-narrow", "vertical-narrow"]
+			);
+			
+			options.rounded = options.rounded || false;
+
+			classesToAdd.push(
+				options.anchor === "top" && options.rounded ? "round-bottom" :
+				options.anchor === "right" && options.rounded ? "round-left" :
+				options.anchor === "bottom" && options.rounded ? "round-top" :
+				options.anchor === "left" && options.rounded ? "round-right" :
+				options.rounded && !options.full ? "round-all" :
+				""
+			);
+			try{
+				classesToAdd.push(Array.from(options.class.split(" ")))
+			}catch{
+				console.warn("Preset class is not a string")
+			};
+
+			canvas.id = options.id;
+			canvas.name = options.id;
+
+			canvas.dataset.divType = "canvas";
+			canvas.dataset.anchor = options.anchor;
+			canvas.dataset.axis = options.axis;
+			canvas.dataset.fluxtype = options.fluxtype; 
+
+			if(options.color) canvas.style.backgroundColor = options.color;
+
+			if(typeof options.style === 'object'){
+				for (const [key, value] of Object.entries(options.style)) {
+					canvas.setAttribute(`${key}`, `${value}`);
+				};
+			};
+
+			const filteredClasses = classesToAdd.flat().filter(className => className !== ""); // Filter out empty classes and flatten the nested arrays.
+			filteredClasses.map(className => canvas.classList.add(className));
+
+			return canvas;
+		},
+
+		text: function(options){
+			if(typeof options !== "object") options = {};
+			const textElement = document.createElement("div");
+			const myColor = options.btnDark ? "darkText" : "lightText";//imposes one of two classes.
+			options = {
+				id: options.id || "alertText", 
+				text: options.text || options.content || options.id || "    ",
+				class : `
+					disable-select
+					${myColor}
+					rootListener
+				`,
+				"data-target" : options.target || "self",
+				"data-package" : options.package || ""
+			};
+
+			for (const [key, value] of Object.entries(options)) {
+				textElement.setAttribute(`${key}`, `${value}`);
+			};
+			textElement.textContent = options.text;
+			return textElement
+		},
+
+		makeButton: function(options){
+			if(typeof options !== "object") options = {};
+			const newButton = document.createElement("button");
+			const text = options.text || options.content || "    ";
+			const myColor = options.btnDark ? "darkText" : "lightText";//imposes one of two classes.
+			const isRound = options.btnRound ? "round" : "square";//imposes one of two classes.
+			const clickFromRoot = options.click === false ? "" : "rootListener";//Determine if this will have the class that will cause the root listener to react tot the object.
+		
+			const buttonObject = {
+				"id" : options.id || "btn",
+				"name" : text,
+				"class" : `
+					disable-select
+					${isRound}
+					${myColor}
+					${clickFromRoot}
+				`,
+				"data-target" : options.target || "self",
+				"data-package" : options.package || ""
+			};
+
+			for (const [key, value] of Object.entries(buttonObject)) {
+				newButton.setAttribute(`${key}`, `${value}`);
+			};
+			newButton.tabIndex = -1;
+			newButton.textContent = text;
+			
+			return newButton;
+		},
+
+		makeBasicLine: function(lnColor = "light", lnSize = "full"){
+			const newLine = document.createElement("hr");
+			return newLine;
+		//I will make the usual options here. Like the length and the color.
+		},
+
+		makeSmallLine: function(lnColor = "light", lnSize = "full"){
+			const newLine = document.createElement("hr");
+			newLine.setAttribute("class","small");
+			return newLine;
+		//I will make the usual options here. Like the length and the color.
+		},
+
+
+
+		choiceButtons: function(resolve, choices, ...rest){
+			const container = document.createElement("div");
+			const controller = new AbortController();
+			const { signal } = controller;
+			container.classList.add("choice-box");
+			for(const choice in choices){
+				const actualData = rest[choice] === undefined ? choices[choice] : rest[choice]
+				const optionButton = elementMaker.makeButton({
+					id:choices[choice],
+					content:choices[choice],
+					btnDark:true,
+					click: false
+				});
+				optionButton.addEventListener("click", () => {
+					resolve(actualData);
+					controller.abort();
+				}, { signal });
+				container.appendChild(optionButton);
+			};
+			return container;
+		},
+
+		inputFieldSubmition: function(resolve, placeholder, type = "text"){
+			const container = document.createElement("div");
+			container.classList.add("choice-box");
+			const optionButton = elementMaker.makeButton({
+				id:"inputButton",
+				content:"✔",
+				btnDark:true,
+				click: false
+			});
+			const input = document.createElement("input");
+			input.setAttribute("type", type);
+			input.setAttribute("id", "myInput");
+			input.setAttribute("placeholder", placeholder);
+			input.style.color = "var(--fontColor1)"; 
+			//input.setAttribute("color","Red");
+			//input.classList.add("btnDark");
+			
+			optionButton.addEventListener("click", () => {
+				const actualData = document.getElementById("myInput").value;
+				resolve(actualData);
+			},{once:true});
+			container.appendChild(input);
+			container.appendChild(optionButton);
+			return container;
+		},
+
+		//Use an element template from an HTML.
+		fromHTMLTemplate: function(title, body) {
+			const template = document.getElementById('card_template');
+			const element = template.content.cloneNode(true).firstElementChild;
+			const [templateTitle] = element.getElementsByTagName("h3");
+			const [templateBody] = element.getElementsByTagName("section");
+			[templateTitle.textContent, templateBody.textContent] = [sn(title), sn(body)];
+			return element;
+		}
+
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+		* @section HMI Controller
+		* @description This is the main object for making elements in the HTML DOM.
+		* @dataset In HTML, data attributes are written with dashes (data-user-id). In JavaScript, dataset converts these to camelCase (dataset.userId). element.setAttribute('data-' + attributeName, value);
+	*/
+
+
+	hmi = {
+
+		has: function(cnvID){
+			const hasElement = ctrl.element(cnvID);
+			if(hasElement){
+				return true;
+			}else{
+				return false;
+			};
+		},
+
+		element: function(passedTarget, parentTarget = false){
+			const focusElement = 
+				document.getElementById(passedTarget) ||
+				passedTarget
+			;
+			const target = parentTarget ? focusElement.parentElement || focusElement : focusElement;
+			return target instanceof HTMLElement ? target : false
+		},
+
+		buildOn: function(targetDivArg = "canvas"+ctrl.latestID){
+			//This is the fragment that everything will append to. This will later be inserted into the canvas all at once.
+			const fragment = document.createDocumentFragment();
+			
+			let targetDiv = ctrl.element(targetDivArg);
+			for (let i = 1; i < arguments.length; i++) {
+				fragment.appendChild(arguments[i]);
+			};
+			//The intent is to make this the final point that all elements are applied to the DOM.
+			targetDiv.appendChild(fragment);
+		},
+		
+		//For removal of HTML elements.
+		
+		removeFrom: function(){
+			const listOfExceptions = [
+				"serviceCartCanvas",
+				"mainMenu",
+				"MapListCanvas",
+				"backdrop-dark",
+				"backdrop-glass",
+				"backdrop-clear"
+			];
+			for (let i = 0; i < arguments.length; i++) {
+				const element = ctrl.element(arguments[i]);
+				if(listOfExceptions.includes(arguments[i]))continue;
+				if(element){
+					element.remove();
+				}else{
+					console.error("The element "+element+" is not valid.")
+				}; 
+			};
+		},
+		
+			/**@description This can return if the animation is running on an element.
+		 * @link https://www.google.com/search?q=javascript+waiting+for+animation+to+finish&sca_esv=f207507d3efe929e&sca_upv=1&rlz=1C1CHBF_enUS825US825&sxsrf=ADLYWIIl21AoLADwYZzhA4qCftoxuWxOdg%3A1727748138053&ei=Klj7ZuX5AuDA0PEP8ZLq2AI&ved=0ahUKEwjltp6wi-yIAxVgIDQIHXGJGisQ4dUDCA8&uact=5&oq=javascript+waiting+for+animation+to+finish&gs_lp=Egxnd3Mtd2l6LXNlcnAiKmphdmFzY3JpcHQgd2FpdGluZyBmb3IgYW5pbWF0aW9uIHRvIGZpbmlzaDIGEAAYFhgeMgYQABgWGB4yCxAAGIAEGIYDGIoFMggQABiABBiiBDIIEAAYgAQYogQyCBAAGIAEGKIESOXIAVDrBVi_xgFwAngAkAEAmAF_oAGrG6oBBTEzLjIxuAEDyAEA-AEBmAIjoALVG8ICChAAGLADGNYEGEfCAgQQIxgnwgIKECMYgAQYJxiKBcICCxAAGIAEGJECGIoFwgINEAAYgAQYsQMYQxiKBcICDhAAGIAEGJECGLEDGIoFwgIQEAAYgAQYsQMYQxiDARiKBcICERAAGIAEGJECGLEDGIMBGIoFwgILEAAYgAQYsQMYgwHCAgUQABiABMICCBAAGBYYHhgPmAMAiAYBkAYIkgcFMTEuMjSgB8vnAQ&sclient=gws-wiz-serp
+		*/
+
+		//Creates canvas (div elements) but does not make them visable.
+		//This will make the div element. Use new blankCanvas for the raw div without adding it to the DOM.
+		backdrop: function(style){
+			//Return if it was already made.
+			if(hmi.has(style)){
+				hmi.navigate.canvasOpenClose(style);
+			}else if(style === 'backdrop-dark'|| style === 'backdrop-glass'|| style === 'backdrop-clear'){
+				const backdropCanvas = elementMaker.presets.backdrop;
+				backdropCanvas.id = style;
+				backdropCanvas.class = style;
+				document.body.appendChild(elementMaker.blankCanvas(backdropCanvas));
+				hmi.navigate.blur(style);
+			};
+			
+		},
+
+		alert: function(message){
+			const closeButton = elementMaker.makeButton({id: "closeAlert", text:"close", btnDark: true});
+			const messageText = elementMaker.text({id:"alertText", text: message, btnDark: true});
+			hmi.backdrop("backdrop-glass");
+			hmi.buildCanvas({"class": "infoPannel", "id":"infoPannel"});
+			hmi.buildOn("infoPannel",
+				messageText,
+				elementMaker.makeBasicLine(),
+				closeButton
+			);
+		},
+
+		/**
+		 * 
+		 * @usage const testTiming = await hmi.askUser("Pick an option",["Test1","Test2","Test3"],"Result1","Result2","Result3");
+		 */
+		askUser: async function(text, choices, ...rest) {
+			if(!Array.isArray(choices))throw new Error("The first perameter for askUser() must be an array of strings");
+			// Remove existing choicesDiv if it exists
+			const existing = document.getElementById("choicesDiv");
+			if(existing) existing.remove();
+			const canvasObject = elementMaker.presets.popupGlass;
+			canvasObject.id = "choicesDiv";
+			const choiceCanvas = elementMaker.blankCanvas(canvasObject);
+			hmi.backdrop("backdrop-glass");
+			hmi.buildOn("backdrop-glass", choiceCanvas);
+			while (true) {
+				const userSelection = await hmi.presentChoices("choicesDiv",text , choices, ...rest);
+				hmi.backdrop("backdrop-glass");
+				hmi.navigate.blur("choicesDiv");
+				return userSelection;
+			}
+		},
+
+		presentChoices: function(parent, argText, choices, ...rest) {
+			return new Promise(resolve => {
+				const choiceButtons = elementMaker.choiceButtons(resolve, choices, ...rest);
+				hmi.buildOn(
+					parent,
+					elementMaker.text({"text":argText, btnDark:true}),
+					elementMaker.makeBasicLine(),
+					choiceButtons,
+				);
+			});
+		},
+
+		/**
+		 * 
+		 * @usage const testTiming = await hmi.userInput("How many pallets?","Pallets?",testButtonElement);
+		 */
+		userInput: async function(argText, placeholder, ...rest) {
+			// Remove existing choicesDiv if it exists
+			const existing = document.getElementById("inputDiv");
+			if(existing) existing.remove();
+			const canvasObject = elementMaker.presets.popupGlass;
+			canvasObject.id = "inputDiv";
+			const inputCanvas = elementMaker.blankCanvas(canvasObject);
+			hmi.backdrop("backdrop-glass");
+			hmi.buildOn("backdrop-glass", inputCanvas);
+			while (true) {
+				const userSelection = await hmi.presentInputField("inputDiv", argText, placeholder, ...rest);
+				hmi.backdrop("backdrop-glass");
+				hmi.navigate.blur("inputDiv");
+				return userSelection;
+			}
+		},
+
+
+		userNumberInput: async function(argText, placeholder = "", ...rest) {
+			// Remove existing choicesDiv if it exists
+			const existing = document.getElementById("inputDiv");
+			if(existing) existing.remove();
+			const canvasObject = elementMaker.presets.popupGlass;
+			canvasObject.id = "inputDiv";
+			const inputCanvas = elementMaker.blankCanvas(canvasObject);
+			hmi.backdrop("backdrop-glass");
+			hmi.buildOn("backdrop-glass", inputCanvas);
+			while (true) {
+				const userSelection = await hmi.presentInputField("inputDiv", argText, placeholder, ...rest);
+				hmi.backdrop("backdrop-glass");
+				hmi.navigate.blur("inputDiv");
+				return userSelection;
+			}
+		},
+
+		presentInputField: function(parent, argText, placeholder = "", ...rest) {
+			const num = typeof placeholder == "number" ? "number" : "text";
+			return new Promise(resolve => {
+				const inputContainer = elementMaker.inputFieldSubmition(resolve, placeholder, num);
+				const otherElements = document.createElement("div");
+				otherElements.classList.add("choice-box");
+				for(const element in rest){
+					if(rest[element] instanceof Element) otherElements.appendChild(rest[element]);
+				};
+				hmi.buildOn(
+					parent,
+					elementMaker.text({"text":argText, btnDark:true}),
+					elementMaker.makeBasicLine(),
+					inputContainer,
+					...(rest.length > 0 ? [elementMaker.makeBasicLine(), otherElements] : [])
+				);
+				
+			
+			});
+		},
+
+
+		navigate: {
+
+			focus: function(targetArgument){
+				if(!targetArgument){
+					targetArgument = canvasHistory[1];//Assuming the last canvas is the one to be focused.
+					canvasHistory.push(canvasHistory.shift());
+				}else if( typeof targetArgument === "number" ){
+					targetArgument = canvasHistory[targetArgument];
+				};
+				const target = ctrl.element(targetArgument);
+				const targetBehavior = target.dataset;
+				switch(targetBehavior.fluxtype){
+					case "appearance" :
+						target.classList.remove("hide");
+						target.classList.add("show");
+						break;
+					case "tucking" :
+					case "expanding" :
+						//add a axis lock based on element axis dataset
+						target.classList.remove("shrink");
+						target.classList.remove("shrink-along-y");
+						target.classList.remove("shrink-along-x");
+						target.classList.add("grow");
+						break;
+					case "minimizing" :
+						target.classList.remove("shrink");
+						target.classList.add("grow");
+						//remove from minimalized when it is developed.
+						break;
+					default:
+				};	
+				
+				//This will hmi.navigate.blur each of the canvases in canvaseHistory.
+				if(targetArgument !== "serviceCartCanvas"){
+					//canvasHistory = ctrl.arrayAsHistory(targetArgument, canvasHistory);
+					if(canvasHistory.length === 11){
+						hmi.removeFrom(ctrl.element(canvasHistory[10]));
+						canvasHistory.pop();
+					};
+					canvasHistory.forEach((element) => {
+						if(element !== targetArgument){
+							hmi.navigate.blur(element);
+						};
+					});
+				};
+				console.log( canvasHistory );
+				target.dataset.displayState = "show";
+			},
+			
+			blur: function(targetArgument){
+
+				const target = ctrl.element(targetArgument);
+				const targetBehavior = target.dataset;
+				switch(targetBehavior.fluxtype){
+					case "appearance" :
+						target.classList.remove("show");
+						target.classList.add("hide");
+						break;
+					case "tucking" :
+					case "expanding" :
+						//add a axis lock based on element axis dataset
+						target.classList.remove("grow");
+						if(targetBehavior.axis === "x")target.classList.add("shrink-along-y");
+						if(targetBehavior.axis === "y")target.classList.add("shrink-along-x");
+						break;
+					case "minimizing" :
+						target.classList.remove("grow");
+						target.classList.add("shrink");
+						//add to minimalized list when it is developed.
+						break;
+					case "temporary" :
+						hmi.removeFrom(target);
+						break;
+					default:
+				};	
+				target.dataset.displayState = "hide";
+
+			},
+
+			//I hope to have a junction here for handling open/close states based on the element.dataset. ctrl.element will define target
+			canvasOpenClose: function(passedTarget){
+				const target = ctrl.element(passedTarget);
+				if(!target){
+					console.error("The element "+passedTarget+" does not exist.");
+					return;
+				};
+				const displayState = target.dataset.displayState;
+				if(displayState === "show"){
+					hmi.navigate.blur(passedTarget);
+				}else{
+					hmi.navigate.focus(passedTarget);
+				};
+			}
+
+			
+		}
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+		* @section Older Element Handlers
+		* @description These are older functions for handling HTML elements. They may be replaced later
+	*/
+
+	//This will make the text values current with the latest calculations. Needed for loading from local storage.
+	function updateElements(job = currentJob) {
+		const tempJob = structuredClone(jobData[job]);
+        updateText("jobElement", tempJob.title);
+        updateText("partialReadOut", information("partialPalletDisplay"));
+		updateText("palletReadOut", information("palletReadout"));
+		updatePalletDisplay();
+	}
+
+	//This will change text on an element or value in a number input.
+	function updateText(elementID, text) {
+		const elById = document.getElementById(elementID);
+		if (elById) {
+			if (elById.tagName === 'INPUT' && elById.type === 'number') {
+				elById.value = text;
+			} else {
+				elById.innerHTML = text;
+			}
+			return;
+		}
+		// fallback: look for named inputs
+		const elByName = document.getElementsByName(elementID)[0];
+		if (elByName && elByName.type === 'number') {
+			elByName.value = text;
+		} else if (elByName) {
+			elByName.innerHTML = text;
+		} else {
+			console.warn('No element with id or name', elementID);
+		}
+	}
+	
+	
+
+	//This will open the inputCanvas and select the inputProxy input field. It will also pass the buttonID arg to the 'target' variable.
+	//Keyboard changes the 50% and smashes drawer https://stackoverflow.com/questions/4207880/android-how-do-i-prevent-the-soft-keyboard-from-pushing-my-view-up
+	function showProxyCanvas(buttonID = "offsetCount") {//need to stopt the 'goal' from making input a 0.
+		const currentNumber = Number(jobData[currentJob][buttonID]);
+		var inputCanvasHeight = document.getElementById("inputCanvas1").clientHeight;
+		if(inputCanvasHeight != 0) return;
+		if(buttonID == "goal") currentNumber = jobData[currentJob].goal.toString();
+		if(isNaN(currentNumber)) currentNumber = 0;
+		target = buttonID;
+		updateText("inputProxy", currentNumber);
+		updateText("description", information(buttonID));
+		document.getElementById("inputCanvas1").style.height = "100%";
+		document.getElementById("inputProxy").focus();
+		document.getElementById("inputProxy").select();
+	};
+
+	//This will simply close the inputCanvas1.
+	function closeProxy() {
+		document.getElementById("inputCanvas1").style.height = "0";
+		document.getElementById("inputProxy").blur();
+	};
+
+	//This will open the inputJob and create the job selection list.
+	function showJobSelection() {
+		var inputCanvasHeight = document.getElementById("inputCanvas1").clientHeight;
+		if(inputCanvasHeight != 0) return;
+		newJobList();
+		document.getElementById("inputJob").style.height = "100%";
+	};
+
+	//This will simply close the inputJob.
+	function closeJobSelection() {
+		document.getElementById("inputJob").style.height = "0";
+	};
+
+
+	
+
+	function newJobList(){
+		const jobSelectionDiv = document.getElementById("inputJob");
+		const listDiv = document.createElement("div");
+		listDiv.id = "jobElSelectionList";
+		// If a previous selection list exists, remove it to avoid duplicates and clear it
+		const existing = document.getElementById("jobElSelectionList");
+		if (existing && existing.parentNode === jobSelectionDiv) {
+			jobSelectionDiv.removeChild(existing);
+		}
+		listDiv.appendChild(newJobSelectionContent());
+		listDiv.appendChild(makeButton({
+			id: "makeNewJob",
+			name: "makeNewJob",
+			content: "New Job",
+			btnDark: false
+		}));
+		listDiv.appendChild(makeButton({
+			id: "deleteCurrentJob",
+			name: "deleteCurrentJob",
+			content: "Delete Current Job",
+			btnDark: false
+		}));
+		listDiv.appendChild(makeButton({
+			id: "closeJobSelection",
+			name: "closeJobSelection",
+			//content: "Close",
+			spriteIndex: 0,
+			btnDark: false
+		}));
+		jobSelectionDiv.appendChild(listDiv);
+	};
+
+
+	function newJobSelectionContent(){
+		const jobKeys = Object.keys(jobData);
+		const jobTitles = jobKeys.map(key => key || jobData[key].title);
+
+		return choiceButtons(
+			(resolve) => {
+				currentJob = resolve;
+				updateText("jobElement", currentJob);
+				updateElements();
+				updateText("countReadout", calcTotal());
+				newStats();
+				closeJobSelection();
+			},
+			jobTitles
+		);
+	};
+
+	function updatePalletDisplay(){
+		const palletDisplay = document.getElementById("palletDisplay");
+		palletDisplay.innerHTML = "";
+		palletDisplay.replaceChildren();
+		const iconSprite = displaySprite(1, 64);
+		for (let i = jobData[currentJob].pallets; i > 0; i--) {
+			palletDisplay.appendChild(iconSprite.cloneNode(true));
+		}
+	}
+
+	// Creates and returns a displayable sprite element from spriteIcons.png
+	// spriteIndex: defines which 30x30 sprite to show (0-8 for a 3x3 grid)
+	function displaySprite(spriteIndex = 0, size = 64) {
+		const imageSize = size * 3; // Total size of the sprite sheet in one dimension (3 sprites per row/column)
+		const sprite = document.createElement("div");
+		sprite.style.width = size + "px";
+		sprite.style.height = size + "px";
+		sprite.style.overflow = "hidden";
+		sprite.style.backgroundImage = "url('spriteIcons.png')";
+
+		
+		// Calculate x and y position based on sprite index (0-8 for 3x3 grid)
+		const x = (spriteIndex % 3) * -size;
+		const y = Math.floor(spriteIndex / 3) * -size;
+		
+		sprite.style.backgroundPosition = `${x}px ${y}px`;
+		sprite.style.backgroundSize = `${imageSize}px ${imageSize}px`;
+		
+		return sprite;
+	}
+
+	
+
+	function makeButton(options){
+        if(typeof options !== "object") options = {};
+        const newButton = document.createElement("button");
+        const text = options.text || options.content || "    ";
+        const myColor = options.btnDark ? "darkText" : "lightText";//imposes one of two classes.
+        const isRound = options.btnRound ? "round" : "square";//imposes one of two classes.
+        const clickFromRoot = options.click === false ? "" : "rootListener";//Determine if this will have the class that will cause the root listener to react tot the object.
+        const buttonObject = {
+            "id" : options.id || "btn",
+            "name" : text,
+            "class" : `
+                disable-select
+                ${isRound}
+                ${myColor}
+                ${clickFromRoot}
+            `,
+            "data-target" : options.target || "self",
+            "data-package" : options.package || ""
+        };
+        for (const [key, value] of Object.entries(buttonObject)) {
+            newButton.setAttribute(`${key}`, `${value}`);
+        };
+        newButton.tabIndex = -1;
+		//If there is a spriteIndex option, add the sprite to the button
+		if (options.spriteIndex !== undefined) {
+			const testSprite = displaySprite(options.spriteIndex, 45);
+			newButton.id = options.id + "Btn" || "btnBtn";
+			testSprite.style.verticalAlign = "middle";
+			testSprite.id = options.id || "btn";
+			newButton.appendChild(testSprite);
+		}else{
+			newButton.textContent = text;
+		};
+
+        return newButton;
+    };
+
+    function choiceButtons(resolve, choices, ...rest){
+		const container = document.createElement("div");
+		const controller = new AbortController();
+		const { signal } = controller;
+        container.classList.add("choice-box");
+		for(const choice in choices){
+			const actualData = rest[choice] === undefined ? choices[choice] : rest[choice]
+			const optionButton = makeButton({
+				id:choices[choice],
+				content:choices[choice],
+				btnDark:true,
+				click: false
+			});
+			optionButton.addEventListener("click", () => {
+				resolve(actualData);
+				controller.abort();
+			}, { signal });
+			container.appendChild(optionButton);
+		};
+		return container;
+	};
+
+    function inputFieldSubmition(resolve, placeholder){
+		const container = document.createElement("div");
+        container.classList.add("choice-box");
+        const optionButton = makeButton({
+            id:"inputButton",
+            content:"Submit",
+            btnDark:true,
+            click: false
+        });
+        const input = document.createElement("input");
+		input.setAttribute("type", "text");
+		input.setAttribute("id", "myInput");
+		input.setAttribute("placeholder", placeholder);
+        input.style.color = "var(--backColor1)"; 
+        //input.setAttribute("color","Red");
+        //input.classList.add("btnDark");
+        
+        optionButton.addEventListener("click", () => {
+            const actualData = document.getElementById("myInput").value;
+            resolve(actualData);
+        },{once:true});
+        container.appendChild(input);
+        container.appendChild(optionButton);
+		return container;
+	};
+
+
+	
+
+
+	function newStats() {
+		const tempJob = structuredClone(jobData[currentJob]);
+		if(tempJob.goal == 0 || tempJob.goal == "Goal"){
+			//updateText("header", "Stack Calculator"+"</br>" +"Units per Whole: " + calcPallet("pieces") + " (" + calcPallet("box on the pallet") +")");
+			document.getElementById("subReadout").style.display = "none";
+			//maybe add the Offset pressence here to remind the user.
+		}else if(tempJob.unitsPerBox==0 || tempJob.boxesPerLayer==0 || tempJob.layerPerPallet==0){
+			updateText("header", "There are zeros (0) somewere that there should not be any. </br>Please set them to 1 if you would like them to not affect the count.");
+		}else{
+			document.getElementById("subReadout").style.display = "block";
+			document.getElementById("header").style.height = "10em";
+			let goalPercent = Math.round((countInput / tempJob.goal)* 100);
+			const remainingSmalls = tempJob.goal - countInput;//Primary
+			const remainingBoxes = remainingSmalls / tempJob.unitsPerBox;
+			let remainingPallets = Math.floor(remainingBoxes / calcPallet("box"));//This might not be needed, unless the user will want to do warehouse planning.
+			let goalFullBoxes = Math.floor(tempJob.goal / tempJob.unitsPerBox);//Primary
+			let endingPallets = Math.floor(goalFullBoxes / calcPallet("box"));
+			const endingBoxesPartial = goalFullBoxes - (calcPallet("box") * endingPallets);// This was tested and was the final pallet boxes on partial layer.
+			let endingboxesPartial = (endingBoxesPartial - Math.floor(endingBoxesPartial / tempJob.boxesPerLayer) * tempJob.boxesPerLayer);
+			const endingLayersPartial = (endingBoxesPartial - endingboxesPartial) / tempJob.boxesPerLayer;
+			updateText("header", 
+				"Units per Whole: " + 
+				calcPallet("pieces") +
+				" (" +
+				calcPallet("box on the pallet") +
+				") " +
+				"</br>" +
+				"100% at: " +
+				endingboxesPartial +
+				", " +
+				endingLayersPartial +
+				", " +
+				endingPallets +
+				" (" +
+				endingPallets +
+				" Whole)"
+			);
+			
+			updateText("subReadout", "/" + remainingSmalls + " (" + goalPercent +"%)");
+		}
+		
+	}
+
+	
+	/**
+		* @section Information Handler
+		* @description This will return information strings for various elements.
+	*/
+
+	//This will return the information for the user to read from anywhere.
+	function information(selection){
+		switch(selection) {
+			case "urlTest":
+				var parsed = (typeof parseTitleAndItemsFromUrl === 'function') ? parseTitleAndItemsFromUrl() : { title: null, items: [] };
+				// Return the parsed object directly for testing (with defaults)
+				return { title: parsed.title || null, items: parsed.items || [] };
+				break;
+			case "partialPalletDisplay":
+				const jobBoxes = jobData[currentJob].boxes;
+				const jobLayers = jobData[currentJob].layers;
+				let readOut = spanish ? `No hay palet parcial` : `There is no partial pallet`;
+				if(spanish){
+					if(jobLayers == 1){
+						readOut = `El palet parcial tiene una capa`;
+					}else if (jobLayers == 0){
+						readOut = `El palet parcial no tiene capas`;
+					}else{
+						readOut = `El palet parcial tiene ${word(jobLayers,"cero")} capas`;
+					};
+					if(jobBoxes == 1){
+						readOut = readOut + `  y una caja`;
+					}else if (jobBoxes == 0){
+						readOut = readOut +  ` y no tiene cajas`;
+					}else if (jobLayers == 0 && jobBoxes == 0){
+						readOut = `No hay palet parcial.`;
+					}else{
+						readOut = readOut + ` y tiene ${word(jobBoxes,"cero")} cajas`;
+					};
+				}else{
+					if(jobLayers == 1){
+						readOut = `The Partial Pallet has a layer`;
+					}else{
+						readOut = `The Partial Pallet has ${word(jobLayers,"no")} layers`;
+					};
+					if(jobBoxes == 1){
+						readOut = readOut + ` and a box`;
+					}else if (jobLayers == 0 && jobBoxes == 0){
+						readOut = `There is no partial pallet.`;
+					}else{
+						readOut = readOut + ` and ${word(jobBoxes,"no")} boxes`;
+					};
+				};
+				console.log(jobLayers, jobBoxes);
+				return readOut;
+				break;
+
+			case "palletReadout":
+				let readOutForPallet = spanish ? `No hay paletas` : `There are no pallets yet`;
+				const totalPallets = jobData[currentJob].pallets;
+				if(totalPallets == 1){
+					readOutForPallet = spanish ? `Hay una paleta completa` : `There is one full pallet`;
+				}else if(totalPallets > 1){
+					readOutForPallet = spanish ? `Hay ${word(totalPallets)} paletas completas` : `There are ${word(totalPallets)} full pallets`;
+				};
+				
+				return readOutForPallet;
+				break;
+			case "boxes":
+				return "<myTitles>Box on Partial</myTitles><br>"+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "layers":
+				return "<myTitles>Layers on Partial Pallet</myTitles><br>"+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "pallets":
+				return "<myTitles>Full Pallets</myTitles><br>"+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "unitsPerBox":
+				return "<myTitles>1 of 3 Pallet Build Definitions</myTitles><br>"+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "boxesPerLayer":
+				return "<myTitles>2 of 3 Pallet Build Definitions</myTitles><br>"+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "layerPerPallet":
+				return "<myTitles>3 of 3 Pallet Build Definitions</myTitles><br>"+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "offsetCount":
+				return ""+
+				""+
+				""+
+				""+
+				""+
+				"";
+				break;
+			case "goal":
+				return ""+
+				"When this number is set to \“0\”, the calculation is disabled. Set this to any goal the user sees fit."+
+				"This could be a daily goal, the lot quantity, or the entire P.O."+
+				""+
+				""+
+				"<myTitles></myTitles>";
+				break;
+			default:
+				return "There was an invalid info query";
+		}
+	
+	}
+
+
+	function word(n, none = false) {
+		if (typeof n !== 'number' || !Number.isInteger(n) || n < 0) {
+			console.error("Input must be an positive integer.");
+			return "Error";
+		};
+
+		let ones = "";
+		let tens = "";
+		let spacing = "";
+
+		const map = {
+			0: '',
+			1: 'one',
+			2: 'two',
+			3: 'three',
+			4: 'four',
+			5: 'five',
+			6: 'six',
+			7: 'seven',
+			8: 'eight',
+			9: 'nine',
+			10: 'ten',
+			11: 'eleven',
+			12: 'twelve',
+			13: 'thirteen',
+			14: 'fourteen',
+			15: 'fifteen',
+			16: 'sixteen',
+			17: 'seventeen',
+			18: 'eighteen',
+			19: 'nineteen',
+			20: 'twenty',
+			30: 'thirty',
+			40: 'forty',
+			50: 'fifty',
+			60: 'sixty',
+			70: 'seventy',
+			80: 'eighty',
+			90: 'ninety'
+		};
+
+		const spanishFemMap = {
+			0: '',
+			1: 'una',
+			2: 'dos',
+			3: 'tres',
+			4: 'cuatro',
+			5: 'cinco',
+			6: 'seis',
+			7: 'siete',
+			8: 'ocho',
+			9: 'nueve',
+			10: 'diez',
+			11: 'once',
+			12: 'doce',
+			13: 'trece',
+			14: 'catorce',
+			15: 'quince',
+			16: 'dieciséis',
+			17: 'diecisiete',
+			18: 'dieciocho',
+			19: 'diecinueve',
+			20: 'veinte',
+			21: 'veintiuna',
+			22: 'veintidós',
+			23: 'veintitrés',
+			24: 'veinticuatro',
+			25: 'veinticinco',
+			26: 'veintiséis',
+			27: 'veintisiete',
+			28: 'veintiocho',
+			29: 'veintinueve',
+			30: 'treinta',
+			40: 'cuarenta',
+			50: 'cincuenta',
+			60: 'sesenta',
+			70: 'setenta',
+			80: 'ochenta',
+			90: 'noventa'
+		};
+
+		if (spanish && n > 30) {
+			ones = spanishFemMap[n % 10];
+			tens = spanishFemMap[Math.floor(n / 10)*10];
+			spacing = " y ";
+		} else if (spanish){
+			ones = (none && n === 0) ? none : spanishFemMap[n];
+			tens = "";
+			spacing = "";
+		} else if (n > 20) {
+			ones = map[n % 10];
+			tens = map[Math.floor(n / 10)*10];
+			spacing = " ";
+		} else {
+			ones = (none && n === 0) ? none : map[n];
+			tens = "";
+			spacing = "";
+		};
+		console.log(ones, tens);
+		const word = (ones !== undefined) ? tens + spacing + ones : n.toString();
+		return word;
+	};
+
+	function caseChange(word, capital = 0){
+		let adjustedWord = word;
+		if (capital === 1) {
+			adjustedWord = word.charAt(0).toUpperCase() + word.slice(1);
+		} else if (capital === 0) {
+			adjustedWord = word.toUpperCase();
+		};
+		return adjustedWord;
+	};
+	
+
+
+
+
+
+
+	
 </script>
+
+
+
 </html>
+
+
