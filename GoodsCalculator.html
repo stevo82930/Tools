@@ -12,7 +12,7 @@ below is if I had an either/or .css file to reference
 	
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="theme-color" content="#909090">
+	<meta name="theme-color" content="#a07344">
 	<meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -23,10 +23,10 @@ below is if I had an either/or .css file to reference
 	
 	<style>
 		:root{
-			--backColor1:#c99300;
-			--backColor2:#000000;
+			--backColor1:hsl(0, 0%, 62%);
+			--backColor2:#d3d2d2;
 			--fontColor1:#000000;
-			--fontColor2:#503712;
+			--fontColor2:#dddddd;
 			--tileWhl:40px;
 		}
 		   
@@ -42,7 +42,7 @@ below is if I had an either/or .css file to reference
 			color: var(--fontColor1);
 			text-align: center;
 			font-family: Arial;
-			font-size: 1.19em;
+			font-size: 1.1em;
 
 		}
 		
@@ -770,6 +770,10 @@ below is if I had an either/or .css file to reference
 			font-weight: bold;
 		}
 
+		.twoLineReadout {
+			min-height: 3em;
+		}
+
 		#jobElement {
 			padding-top:5px;
 		}
@@ -903,14 +907,45 @@ below is if I had an either/or .css file to reference
 		//This is the main event listener. I bound it to the root so that I would have less garbage collection and I would not have to chase and close listeners as I go.
         //This app would have sooo many listeners because each entry has multiple buttons and they are being created and deleted frequently.
         const rootEl = document.querySelector(":root");
+        
         // Detect touch capability and use appropriate listener
         const isTouchDevice = () => navigator.maxTouchPoints > 0;
-        const eventType = isTouchDevice() ? 'touchend' : 'mouseup';
         
-        // Listen for clicks on the entire window
-        rootEl.addEventListener(eventType, function (event) {
-			if (event.target.closest('.rootListener')) buttonHandler(event.target.id, event.target.name);
-		});
+        if (isTouchDevice()) {
+            // Touch device: detect swipes to prevent accidental button fires while scrolling
+            let touchStartX, touchStartY, isSwiping = false;
+            
+            rootEl.addEventListener('touchstart', (event) => {
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+                isSwiping = false;
+            });
+            
+            rootEl.addEventListener('touchmove', (event) => {
+                const touchMoveX = event.touches[0].clientX;
+                const touchMoveY = event.touches[0].clientY;
+                const distance = Math.sqrt(
+                    Math.pow(touchMoveX - touchStartX, 2) + 
+                    Math.pow(touchMoveY - touchStartY, 2)
+                );
+                
+                // If user moved more than ~10px, consider it a scroll, not a tap
+                if (distance > 10) {
+                    isSwiping = true;
+                }
+            });
+            
+            rootEl.addEventListener('touchend', function (event) {
+                if (!isSwiping && event.target.closest('.rootListener')) {
+                    buttonHandler(event.target.id, event.target.name);
+                }
+            });
+        } else {
+            // PC: use mouseup for click detection
+            rootEl.addEventListener('mouseup', function (event) {
+                if (event.target.closest('.rootListener')) buttonHandler(event.target.id, event.target.name);
+            });
+        }
 
 		/*
 		//This is to set the best press for the input. Then set the functions in jquerry
@@ -983,8 +1018,8 @@ below is if I had an either/or .css file to reference
 		
 		<div class ="blackLine"></div>
 
-		<div>
-			<p id="partialReadOut" name="partialReadOut" >Test boxes and layer readout</p>
+		<div >
+			<p id="partialReadOut" name="partialReadOut" class= "twoLineReadout" >Test boxes and layer readout</p>
 		</div>
 		
 		<div class="rowFlex">
@@ -1009,7 +1044,7 @@ below is if I had an either/or .css file to reference
 		<div class ="blackLine"></div>
 		
 		<div>
-			<p id="palletReadOut" name="palletReadOut" class="rootListener">There are no pallets</p>
+			<p id="palletReadOut" name="palletReadOut" class="rootListener twoLineReadout">There are no pallets</p>
 		</div>
 
 		<div class="rowFlex">
@@ -1208,6 +1243,58 @@ below is if I had an either/or .css file to reference
 		return amountOf;
 	}
 
+	//This will calulate the rollover amount and adjust the jobData accordingly.
+	function rollover(factor = 0, raw = true) {
+
+	//maybe I should add a argument to govern the behavior
+		const tempObject = structuredClone(jobData[currentJob]);
+
+		if(tempObject.boxes >= tempObject.boxesPerLayer){
+			tempObject.layers++;
+			tempObject.boxes = 0;
+		}else if(tempObject.boxes < 0){
+			tempObject.layers--;
+			tempObject.boxes = tempObject.boxesPerLayer - 1
+		};
+		if(tempObject.layers >= tempObject.layerPerPallet){
+			tempObject.pallets++;
+			tempObject.layers = 0;
+			tempObject.boxes = 0;
+		}else if(tempObject.layers < 0){
+			if(tempObject.pallets > 0) tempObject.pallets--;
+			tempObject.layers = tempObject.layerPerPallet - 1;
+			tempObject.boxes = tempObject.boxesPerLayer - 1;
+		};
+
+
+		if(tempObject.boxes >= tempObject.boxesPerLayer){
+			tempObject.layers++;
+			tempObject.boxes = 0;
+		}else if(tempObject.boxes < 0){
+			tempObject.layers--;
+			tempObject.boxes = tempObject.boxesPerLayer - 1
+		};
+		if(tempObject.layers >= tempObject.layerPerPallet){
+			tempObject.pallets++;
+			tempObject.layers = 0;
+			tempObject.boxes = 0;
+		}else if(tempObject.layers < 0){
+			if(tempObject.pallets > 0) tempObject.pallets--;
+			tempObject.layers = tempObject.layerPerPallet - 1;
+			tempObject.boxes = tempObject.boxesPerLayer - 1;
+		};
+
+
+		updateJob(currentJob, tempObject);
+		console.log(tempObject);
+		if(!raw){
+			saveToLocalStorage();
+			updateElements();
+			newStats();
+		};
+
+	}
+
 	// Parses `?title=Foo&items=a,b,c` and returns `{ title: 'Foo', items: ['a','b','c'] }`.
 	// The `titleKey` and `itemsKey` parameters can be overridden if needed.
 	function parseTitleAndItemsFromUrl(titleKey = 'title', itemsKey = 'items') {
@@ -1331,15 +1418,12 @@ below is if I had an either/or .css file to reference
 					break;
 				case "downBox":
 					tempJob.boxes--;
-					if (tempJob.boxes < 0) tempJob.boxes = 0;
 					break;
 				case "downLayer":
 					tempJob.layers--;
-					if (tempJob.layers < 0) tempJob.layers = 0;
 					break;
 				case "downPallet":
 					tempJob.pallets--;
-					if (tempJob.pallets < 0) tempJob.pallets = 0;
 					break;
 				case "boxIcon":
 					showProxyCanvas('boxes');
@@ -1380,6 +1464,7 @@ below is if I had an either/or .css file to reference
 			}
 			
 			updateJob(currentJob, tempJob);
+			rollover();
 			saveToLocalStorage();
 			updateText("countReadout", calcTotal());
 			updateElements();
@@ -2407,36 +2492,36 @@ below is if I had an either/or .css file to reference
 			case "partialPalletDisplay":
 				const jobBoxes = jobData[currentJob].boxes;
 				const jobLayers = jobData[currentJob].layers;
-				let readOut = spanish ? `No hay palet parcial` : `There is no partial pallet`;
+				let readOut = spanish ? `<u>No hay palet parcial</u>` : `There is <u>no partial pallet</u>`;
 				if(spanish){
 					if(jobLayers == 1){
-						readOut = `El palet parcial tiene una capa`;
+						readOut = `El palet parcial tiene <u>una capa</u>`;
 					}else if (jobLayers == 0){
-						readOut = `El palet parcial no tiene capas`;
+						readOut = `El palet parcial <u>no tiene capas</u>`;
 					}else{
-						readOut = `El palet parcial tiene ${word(jobLayers,"cero")} capas`;
+						readOut = `El palet parcial tiene <u>${word(jobLayers,"cero")} capas</u>`;
 					};
 					if(jobBoxes == 1){
-						readOut = readOut + `  y una caja`;
+						readOut = readOut + `  y <u>una caja</u>`;
 					}else if (jobBoxes == 0){
-						readOut = readOut +  ` y no tiene cajas`;
+						readOut = readOut +  ` y <u>no tiene cajas</u>`;
 					}else if (jobLayers == 0 && jobBoxes == 0){
-						readOut = `No hay palet parcial.`;
+						readOut = `<u>No hay palet parcial.</u>`;
 					}else{
-						readOut = readOut + ` y tiene ${word(jobBoxes,"cero")} cajas`;
+						readOut = readOut + ` y tiene <u>${word(jobBoxes,"cero")} cajas</u>`;
 					};
 				}else{
 					if(jobLayers == 1){
-						readOut = `The Partial Pallet has a layer`;
+						readOut = `The Partial Pallet has <u>a layer</u>`;
 					}else{
-						readOut = `The Partial Pallet has ${word(jobLayers,"no")} layers`;
+						readOut = `The Partial Pallet has <u>${word(jobLayers,"no")} layers</u>`;
 					};
 					if(jobBoxes == 1){
-						readOut = readOut + ` and a box`;
+						readOut = readOut + ` and <u>a box</u>`;
 					}else if (jobLayers == 0 && jobBoxes == 0){
-						readOut = `There is no partial pallet.`;
+						readOut = `There is <u>no partial pallet.</u>`;
 					}else{
-						readOut = readOut + ` and ${word(jobBoxes,"no")} boxes`;
+						readOut = readOut + ` and <u>${word(jobBoxes,"no")} boxes</u>`;
 					};
 				};
 				console.log(jobLayers, jobBoxes);
@@ -2444,12 +2529,12 @@ below is if I had an either/or .css file to reference
 				break;
 
 			case "palletReadout":
-				let readOutForPallet = spanish ? `No hay paletas` : `There are no pallets yet`;
+				let readOutForPallet = spanish ? `<u>No</u> hay paletas` : `There are <u>no</u> pallets yet`;
 				const totalPallets = jobData[currentJob].pallets;
 				if(totalPallets == 1){
-					readOutForPallet = spanish ? `Hay una paleta completa` : `There is one full pallet`;
+					readOutForPallet = spanish ? `Hay <u>una</u> paleta completa` : `There is <u>one</u> full pallet`;
 				}else if(totalPallets > 1){
-					readOutForPallet = spanish ? `Hay ${word(totalPallets)} paletas completas` : `There are ${word(totalPallets)} full pallets`;
+					readOutForPallet = spanish ? `Hay <u>${word(totalPallets)}</u> paletas completas` : `There are <u>${word(totalPallets)}</u> full pallets`;
 				};
 				
 				return readOutForPallet;
@@ -2624,7 +2709,7 @@ below is if I had an either/or .css file to reference
 			spacing = "";
 		};
 		console.log(ones, tens);
-		const word = (ones !== undefined) ? tens + spacing + ones : n.toString();
+		const word = (ones !== undefined && n < 100) ? tens + spacing + ones : n.toString();
 		return word;
 	};
 
@@ -2650,6 +2735,5 @@ below is if I had an either/or .css file to reference
 
 
 </html>
-
 
 
